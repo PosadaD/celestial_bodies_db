@@ -75,13 +75,14 @@ SET default_table_access_method = heap;
 --
 
 CREATE TABLE public.distanci_tierra (
-    distancia_tierra_id integer NOT NULL,
+    distanci_tierra_id integer NOT NULL,
     distancia public.distancia_enum NOT NULL,
     tipo_cuerpo public.tipo_cuerpo_enum NOT NULL,
     galaxy_id integer,
     star_id integer,
     planet_id integer,
-    moon_id integer
+    moon_id integer,
+    name character varying(100)
 );
 
 
@@ -106,7 +107,7 @@ ALTER TABLE public.distanci_tierra_distancia_tierra_id_seq OWNER TO freecodecamp
 -- Name: distanci_tierra_distancia_tierra_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
 --
 
-ALTER SEQUENCE public.distanci_tierra_distancia_tierra_id_seq OWNED BY public.distanci_tierra.distancia_tierra_id;
+ALTER SEQUENCE public.distanci_tierra_distancia_tierra_id_seq OWNED BY public.distanci_tierra.distanci_tierra_id;
 
 
 --
@@ -265,10 +266,10 @@ ALTER SEQUENCE public.star_star_id_seq OWNED BY public.star.star_id;
 
 
 --
--- Name: distanci_tierra distancia_tierra_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
+-- Name: distanci_tierra distanci_tierra_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
-ALTER TABLE ONLY public.distanci_tierra ALTER COLUMN distancia_tierra_id SET DEFAULT nextval('public.distanci_tierra_distancia_tierra_id_seq'::regclass);
+ALTER TABLE ONLY public.distanci_tierra ALTER COLUMN distanci_tierra_id SET DEFAULT nextval('public.distanci_tierra_distancia_tierra_id_seq'::regclass);
 
 
 --
@@ -303,26 +304,26 @@ ALTER TABLE ONLY public.star ALTER COLUMN star_id SET DEFAULT nextval('public.st
 -- Data for Name: distanci_tierra; Type: TABLE DATA; Schema: public; Owner: freecodecamp
 --
 
-INSERT INTO public.distanci_tierra VALUES (1, 'cerca', 'estrella', NULL, 1, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (2, 'intermedio', 'planeta', NULL, NULL, 2, NULL);
-INSERT INTO public.distanci_tierra VALUES (3, 'lejos', 'galaxia', 3, NULL, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (4, 'cerca', 'luna', NULL, NULL, NULL, 4);
-INSERT INTO public.distanci_tierra VALUES (5, 'intermedio', 'estrella', NULL, 5, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (6, 'lejos', 'planeta', NULL, NULL, 6, NULL);
-INSERT INTO public.distanci_tierra VALUES (7, 'cerca', 'estrella', NULL, 7, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (8, 'intermedio', 'luna', NULL, NULL, NULL, 8);
-INSERT INTO public.distanci_tierra VALUES (9, 'lejos', 'galaxia', 9, NULL, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (10, 'cerca', 'estrella', NULL, 10, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (11, 'intermedio', 'planeta', NULL, NULL, 11, NULL);
-INSERT INTO public.distanci_tierra VALUES (12, 'lejos', 'luna', NULL, NULL, NULL, 12);
-INSERT INTO public.distanci_tierra VALUES (13, 'cerca', 'galaxia', 13, NULL, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (14, 'intermedio', 'estrella', NULL, 14, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (15, 'lejos', 'planeta', NULL, NULL, 15, NULL);
-INSERT INTO public.distanci_tierra VALUES (16, 'cerca', 'luna', NULL, NULL, NULL, 16);
-INSERT INTO public.distanci_tierra VALUES (17, 'intermedio', 'galaxia', 17, NULL, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (18, 'lejos', 'estrella', NULL, 18, NULL, NULL);
-INSERT INTO public.distanci_tierra VALUES (19, 'cerca', 'planeta', NULL, NULL, 19, NULL);
-INSERT INTO public.distanci_tierra VALUES (20, 'intermedio', 'luna', NULL, NULL, NULL, 20);
+INSERT INTO public.distanci_tierra VALUES (1, 'cerca', 'estrella', NULL, 1, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (2, 'intermedio', 'planeta', NULL, NULL, 2, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (3, 'lejos', 'galaxia', 3, NULL, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (4, 'cerca', 'luna', NULL, NULL, NULL, 4, NULL);
+INSERT INTO public.distanci_tierra VALUES (5, 'intermedio', 'estrella', NULL, 5, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (6, 'lejos', 'planeta', NULL, NULL, 6, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (7, 'cerca', 'estrella', NULL, 7, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (8, 'intermedio', 'luna', NULL, NULL, NULL, 8, NULL);
+INSERT INTO public.distanci_tierra VALUES (9, 'lejos', 'galaxia', 9, NULL, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (10, 'cerca', 'estrella', NULL, 10, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (11, 'intermedio', 'planeta', NULL, NULL, 11, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (12, 'lejos', 'luna', NULL, NULL, NULL, 12, NULL);
+INSERT INTO public.distanci_tierra VALUES (13, 'cerca', 'galaxia', 13, NULL, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (14, 'intermedio', 'estrella', NULL, 14, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (15, 'lejos', 'planeta', NULL, NULL, 15, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (16, 'cerca', 'luna', NULL, NULL, NULL, 16, NULL);
+INSERT INTO public.distanci_tierra VALUES (17, 'intermedio', 'galaxia', 17, NULL, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (18, 'lejos', 'estrella', NULL, 18, NULL, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (19, 'cerca', 'planeta', NULL, NULL, 19, NULL, NULL);
+INSERT INTO public.distanci_tierra VALUES (20, 'intermedio', 'luna', NULL, NULL, NULL, 20, NULL);
 
 
 --
@@ -465,11 +466,19 @@ SELECT pg_catalog.setval('public.star_star_id_seq', 1, false);
 
 
 --
+-- Name: distanci_tierra distanci_tierra_name_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
+--
+
+ALTER TABLE ONLY public.distanci_tierra
+    ADD CONSTRAINT distanci_tierra_name_key UNIQUE (name);
+
+
+--
 -- Name: distanci_tierra distanci_tierra_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
 
 ALTER TABLE ONLY public.distanci_tierra
-    ADD CONSTRAINT distanci_tierra_pkey PRIMARY KEY (distancia_tierra_id);
+    ADD CONSTRAINT distanci_tierra_pkey PRIMARY KEY (distanci_tierra_id);
 
 
 --
