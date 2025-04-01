@@ -54,7 +54,3 @@ La base de datos tiene las siguientes tablas:
 - **`planet_id`** (INT): Relación con el planeta a la que se hace referencia (puede ser NULL).
 - **`moon_id`** (INT): Relación con la luna a la que se hace referencia (puede ser NULL).
 
-Para crear la base de datos, puedes ejecutar el siguiente comando en la consola de PostgreSQL:
-
-```sql
-CREATE DATABASE sistema_astronomico;
