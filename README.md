@@ -54,14 +54,6 @@ La base de datos tiene las siguientes tablas:
 - **`planet_id`** (INT): Relación con el planeta a la que se hace referencia (puede ser NULL).
 - **`moon_id`** (INT): Relación con la luna a la que se hace referencia (puede ser NULL).
 
-## Instrucciones de Uso
-
-### 1. **Instalación de PostgreSQL**
-
-Asegúrate de tener PostgreSQL instalado en tu sistema. Si no lo tienes, puedes seguir las instrucciones de instalación para tu sistema operativo desde la [documentación oficial de PostgreSQL](https://www.postgresql.org/download/).
-
-### 2. **Creación de la Base de Datos**
-
 Para crear la base de datos, puedes ejecutar el siguiente comando en la consola de PostgreSQL:
 
 ```sql
